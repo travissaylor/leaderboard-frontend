@@ -1,0 +1,53 @@
+# Default values for amg-leaderboard-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: harbor.athlon.io/myriad/amg-leaderboard-frontend
+  tag: 1.0.1
+  pullPolicy: IfNotPresent
+  imageCredentials:
+    registry: harbor.athlon.io
+    username: robot$DeploymentAgent
+    password: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjM0ODgzNDcsImlhdCI6MTU2MDg5NjM0NywiaXNzIjoiaGFyYm9yLXRva2VuLWlzc3VlciIsImlkIjoxLCJwaWQiOjIsImFjY2VzcyI6W3siUmVzb3VyY2UiOiIvcHJvamVjdC8yL3JlcG9zaXRvcnkiLCJBY3Rpb24iOiJwdWxsIiwiRWZmZWN0IjoiIn0seyJSZXNvdXJjZSI6Ii9wcm9qZWN0L215cmlhZC9yZXBvc2l0b3J5IiwiQWN0aW9uIjoicHVsbCIsIkVmZmVjdCI6IiJ9XX0.cHKlhwmA3t7mCZcBNTKPkIpfBtdu1Xw9baWMit9ywvy3kDkNvz2HCXGr31htIm1MhtqLgUfs0ADG0MQxGiGn4UApEmuKEr4Q9WrOHV-qjvUX3gCsXXpqtQ27QxlloMCO1hqXhNHjdVVBwmLL7vUQjuaYY_dRG3QQelfvTR9zmCqdYn7suqTpqkpkU06_Up_GRRXNHhkiLEKdLImxjbxC7fdVeYyDclkkQib6jKDuZRLIx9rkk3MXZ7rxtywYlawViMkAHvXuiFl6Cy69lXXQ3Bkz36nlrs3yj8I-aCRVNO_ULpPmFcTprPC7ZZrndwL3QF5SSmRBtD9PwDK30nRRr6ty1ugNIXIBvhdCrFZ-J-FeYdMSZjm7gThsQk-5tHt4wjRiH8kO4efJRstimSBRsUS1S0aeBDqt8it-xmUkmhHyugqU43zKyv1FjTvDvHnT1mMmNLIxjDd5h0LAWVnf3qscbYDKNqv8JfuDZb_aeqBp_xHW1QwP1L_njkcQdV79pDKZr1puyXv0bhAtMbobwrVTwLQn0T5qNAY5VlxxdL4dsAVQgBoSyE3r40dC7BmfguuvJNqoFrBDQ_FttmoficYltrdUntEFK_GFDuQMv2ZtKmwjpe781tvSpmOfLBN_EN6EuwP1jiAys3Q_xw__KBqSlL5gJfC1cDxmoEaWdSY
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

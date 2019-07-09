@@ -1,0 +1,12 @@
+apiVersion: skaffold/v1beta11
+kind: Config
+# build:
+#   artifacts:
+#   - image: amg-leaderboard-frontend-image
+#     context: /Users/tsaylor/sites/amg-leaderboard-frontend
+deploy:
+  helm:
+    releases:
+    - name: amg-leaderboard-frontend
+      namespace: myriad-api
+      chartPath: ./amg-leaderboard-chart
