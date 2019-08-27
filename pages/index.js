@@ -1,6 +1,7 @@
 import Layout from '../components/Layout';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
+import { Hash } from 'crypto';
 
 function Index(props) {
     return (
@@ -28,7 +29,7 @@ function AuthorLink(props) {
                 </td>
                 <td className="name-cell">
                     <div className="name">{author.name}</div>
-                    <div className="post-count">### posts</div>
+                    <div className="post-count">{author.posts.length}</div>
                 </td>
                 <td className="unique-cell">
                     <div className="unique-count">###</div>
@@ -42,10 +43,18 @@ function AuthorLink(props) {
 };
 
 Index.getInitialProps = async function() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data = await res.json();
-  
-    console.log(`Show data fetched. Count: ${data.length}`);
+    const resUsers = await fetch('https://jsonplaceholder.typicode.com/users');
+    const dataUsers = await resUsers.json();
+
+    const resPosts = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const dataPosts = await resPosts.json();
+
+    // add posts to the user's info using a one to many relation and hash table: https://stackoverflow.com/a/38653687/3106919
+    var hash = Object.create(null);
+    var data = dataUsers.map((hash => du => hash[du.id] = { id: du.id, name: du.name, geo: du.geo, posts: []})(hash));
+    dataPosts.forEach((hash => dp => hash[dp.userId].posts.push({ id: dp.id, name: dp.title}))(hash));
+    
+    console.log(`Show data fetched. Count: ${dataUsers.length}`);
   
     return {
         authors: data
