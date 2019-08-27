@@ -1,7 +1,6 @@
 import Layout from '../components/Layout';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
-import { Hash } from 'crypto';
 
 function Index(props) {
     return (

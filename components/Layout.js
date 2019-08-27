@@ -1,26 +1,24 @@
 import Navbar from './Navbar';
 import '../css/app.css';
+import Head from './Head';
 
 function Layout(props) {
     return (
         <div>
-            <head>
-                <meta charset="utf-8"/>
-                <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>{props.title} | Parade Leaderboard</title>
-
-            </head>
+            <Head title={props.title} />
             <header className="parade-header"><h1>Parade Leaderboard</h1></header>
             <div className="contentContainer">
                 <Navbar active={props.title}/>
-            <div className="grid-container">
-                <div className="grid-x grid-padding-x">
-                <table>
-                    {props.children}
-                </table>
+                {props.tableTitle != null &&
+                    <h4>{props.tableTitle}</h4>
+                }
+                <div className="grid-container">
+                    <div className="grid-x grid-padding-x">
+                    <table>
+                        {props.children}
+                    </table>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     );
