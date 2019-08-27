@@ -22,14 +22,14 @@ const Content = withRouter( props  => {
                 if(post.userId == props.router.query.authorId) {
                     return (
                         <tr key={post.id}>
-                            <td class="ranking-cell">
-                            <div class="ranking">{post.id}</div>
+                            <td className="ranking-cell">
+                            <div className="ranking">{post.id}</div>
                             </td>
-                            <td class="post-cell">
-                            <div class="name">{post.title}</div>
+                            <td className="post-cell">
+                            <div className="name">{post.title}</div>
                             </td>
-                            <td class="unique-cell">
-                            <div class="unique-count">###</div>
+                            <td className="unique-cell">
+                            <div className="unique-count">###</div>
                             </td>
                         </tr>
                     );
